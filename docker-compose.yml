@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+  lawyers-db:
+    container_name: lawyers-db
+    image: mongo:latest
+    ports:
+      - 27018:27017
+
+  lawyers-service:
+    container_name: lawyers-service
+    build: ./lawyers/
+    restart: always
+    volumes:
+      - "./lawyers:/usr/src/"
+      - "./lawyers/package.json:/usr/src/package.json"
+    ports:
+      - "3001:3000" # expose ports - HOST:CONTAINER
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - PORT=3000
+    depends_on:
+      - lawyers-db
+    links:
+      - lawyers-db
+
+  doctors-db:
+    container_name: doctors-db
+    image: mongo:latest
+    ports:
+      - 27019:27017
+
+  doctors-service:
+    container_name: doctors-service
+    build: ./doctors
+    restart: always
+    volumes:
+      - "./doctors:/usr/src/"
+      - "./doctors/package.json:/usr/src/package.json"
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - PORT=3000
+    depends_on:
+      - doctors-db
+    links:
+      - doctors-db
