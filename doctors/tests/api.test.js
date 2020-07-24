@@ -35,8 +35,8 @@ describe("doctor api endpoint test", () => {
   });
 
   it("registers a new doctor and retrieves his information", async (done) => {
-    let response = await request.post("/api/doctors").send({ doctor });
-    let doctorReceived = response.body.doctor;
+    let response = await request.post("/api/doctors").send(doctor);
+    let doctorReceived = response.body;
     expect(doctorReceived._id).toBeDefined();
     expect(doctorReceived.first_name).toBe(doctor.first_name);
     expect(doctorReceived.last_name).toBe(doctor.last_name);
@@ -48,9 +48,9 @@ describe("doctor api endpoint test", () => {
   });
 
   it("retrieves information of all doctors", async (done) => {
-    await request.post("/api/doctors").send({ doctor });
+    await request.post("/api/doctors").send(doctor);
     let response = await request.get("/api/doctors");
-    let doctors = response.body.doctors;
+    let doctors = response.body;
     expect(doctors.length).toBe(1);
     done();
   });

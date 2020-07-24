@@ -10,7 +10,7 @@ const router = express.Router();
  */
 router.get("/", async (req, res) => {
   const lawyers = await Lawyer.find();
-  res.status(200).json({ lawyers });
+  res.status(200).json(lawyers);
 });
 
 /**
@@ -20,11 +20,11 @@ router.get("/", async (req, res) => {
  */
 router.post("/", async (req, res) => {
   try {
-    let newLawyer = new Lawyer(req.body.lawyer);
+    let newLawyer = new Lawyer(req.body);
     let savedLawyer = await newLawyer.save();
-    res.status(200).json({ lawyer: savedLawyer });
+    res.status(200).json(savedLawyer);
   } catch (e) {
-    res.status(400).json({ msg: "Error while saving document." });
+    res.status(400).json({ msg: e.message });
     console.log(e);
   }
 });

@@ -35,8 +35,8 @@ describe("lawyer api endpoint test", () => {
   });
 
   it("registers a new lawyer and retrieves his information", async (done) => {
-    let response = await request.post("/api/lawyers").send({ lawyer });
-    let lawyerReceived = response.body.lawyer;
+    let response = await request.post("/api/lawyers").send(lawyer);
+    let lawyerReceived = response.body;
     expect(lawyerReceived._id).toBeDefined();
     expect(lawyerReceived.first_name).toBe(lawyer.first_name);
     expect(lawyerReceived.last_name).toBe(lawyer.last_name);
@@ -48,9 +48,9 @@ describe("lawyer api endpoint test", () => {
   });
 
   it("retrieves information of all lawyers", async (done) => {
-    await request.post("/api/lawyers").send({ lawyer });
+    await request.post("/api/lawyers").send(lawyer);
     let response = await request.get("/api/lawyers");
-    let lawyers = response.body.lawyers;
+    let lawyers = response.body;
     expect(lawyers.length).toBe(1);
     done();
   });

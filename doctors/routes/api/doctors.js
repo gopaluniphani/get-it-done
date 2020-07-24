@@ -10,9 +10,9 @@ const router = express.Router();
  */
 router.post("/", async (req, res) => {
   try {
-    let newDoctor = new Doctor(req.body.doctor);
+    let newDoctor = new Doctor(req.body);
     let savedDoctor = await newDoctor.save();
-    res.status(200).json({ doctor: savedDoctor });
+    res.status(200).json(savedDoctor);
   } catch (e) {
     console.log(e);
     res.status(400).json({ message: e.message });
@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     let doctors = await Doctor.find();
-    res.status(200).json({ doctors });
+    res.status(200).json(doctors);
   } catch (e) {
     console.log(e);
     res.status(400).json({ message: e.message });
@@ -43,7 +43,7 @@ router.get("/:id", async (req, res) => {
   try {
     let doctor = await Doctor.findById(req.params.id);
     if (!doctor) throw Error("No doctor with give id");
-    res.status(200).json({ doctor });
+    res.status(200).json(doctor);
   } catch (e) {
     console.log(e);
     res.status(400).json({ message: e.message });

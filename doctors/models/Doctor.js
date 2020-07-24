@@ -5,8 +5,8 @@ const model = mongoose.model;
 const DoctorSchema = new Schema({
   first_name: String,
   last_name: String,
-  phone: { type: Number, required: true },
-  email: { type: String, required: true },
+  phone: { type: Number, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
   specialization: String,
   registered_data: { type: Date, default: Date.now },
 });
