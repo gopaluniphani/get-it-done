@@ -1,7 +1,6 @@
 var express = require("express");
 var logger = require("morgan");
-var mongoose = require("mongoose");
-
+var cors = require("cors");
 var lawyerRoutes = require("./routes/api/lawyers");
 
 var app = express();
@@ -9,6 +8,7 @@ var app = express();
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 app.use("/api/lawyers", lawyerRoutes);
 

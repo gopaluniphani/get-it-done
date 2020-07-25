@@ -126,3 +126,6 @@ sketch
 # End of https://www.toptal.com/developers/gitignore/api/node,react
 
 db-volumes
+
+# production
+/build

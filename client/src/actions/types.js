@@ -1,0 +1,8 @@
+export const GET_ERRORS = "GET_ERRORS";
+export const CREATE_MESSAGE = "CREATE_MESSAGE";
+
+export const REGISTER_LAWYER = "REGISTER_LAWYER";
+export const REGISTER_DOCTOR = "REGISTER_DOCTOR";
+
+export const GET_LAWYERS = "GET_LAWYERS";
+export const GET_DOCTORS = "GET_DOCTORS";
