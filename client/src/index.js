@@ -3,12 +3,11 @@ import "materialize-css/dist/js/materialize.min.js";
 
 import React, { Fragment } from "react";
 import ReactDom from "react-dom";
-import { HashRouter as Router, Route } from "react-router-dom";
 
 import { Provider } from "react-redux";
 import store from "./store.js";
 
-import { Provider as AlertProvider, transitions, positions } from "react-alert";
+import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 import Alerts from "./components/utils/Alerts";
 
@@ -23,12 +22,10 @@ const alertOptions = {
 const starter = (
   <Provider store={store}>
     <AlertProvider template={AlertTemplate} {...alertOptions}>
-      <Router>
-        <Fragment>
-          <Alerts />
-          <Route component={App} />
-        </Fragment>
-      </Router>
+      <Fragment>
+        <Alerts />
+        <App />
+      </Fragment>
     </AlertProvider>
   </Provider>
 );

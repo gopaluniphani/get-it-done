@@ -1,4 +1,6 @@
-import React, { Fragment } from "react";
+import M from "materialize-css";
+
+import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import lawyer from "./lawyer.jpg";
@@ -6,6 +8,11 @@ import doctor from "./stethoscope.jpg";
 import background from "./background.png";
 
 const Home = (props) => {
+  useEffect(() => {
+    let elems = document.querySelectorAll(".parallax");
+    M.Parallax.init(elems, {});
+  });
+
   return (
     <Fragment>
       <div id="index-banner" className="parallax-container valign-wrapper">

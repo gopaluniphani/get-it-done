@@ -48,3 +48,15 @@ services:
       - doctors-db
     links:
       - doctors-db
+
+  web-service:
+    container_name: web-service
+    build: ./client
+    volumes:
+      - "./client:/usr/src"
+      - "./client/package.json:/usr/src/package.json"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - doctors-service
+      - lawyers-service
