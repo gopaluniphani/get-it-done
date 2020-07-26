@@ -1,7 +1,14 @@
-import React from "react";
+import M from "materialize-css";
+
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
+  useEffect(() => {
+    let elems = document.querySelectorAll(".sidenav");
+    M.Sidenav.init(elems, {});
+  });
+
   return (
     <nav className="black" role="navigation">
       <div className="nav-wrapper container">

@@ -16,7 +16,7 @@ services:
       - "./lawyers:/usr/src/"
       - "./lawyers/package.json:/usr/src/package.json"
     ports:
-      - "3001:3000" # expose ports - HOST:CONTAINER
+      - "3001:3000"
     environment:
       - NODE_ENV=${NODE_ENV}
       - PORT=3000
@@ -56,7 +56,10 @@ services:
       - "./client:/usr/src"
       - "./client/package.json:/usr/src/package.json"
     ports:
-      - "3000:3000"
+      - "3003:3000"
+    environment:
+      - NODE_ENV=${NODE_ENV}
     depends_on:
-      - doctors-service
       - lawyers-service
+      - doctors-service
+    stdin_open: true
