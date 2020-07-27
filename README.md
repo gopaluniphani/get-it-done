@@ -19,4 +19,4 @@ To run the project
 
 > docker-compose up -d
 
-** Now go to localhost:8080 in your favorite browser **
+**Now go to localhost:8080 in your favorite browser**
