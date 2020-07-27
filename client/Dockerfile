@@ -1,16 +1,7 @@
-FROM node:latest
+FROM nginx:latest
 
-# set working directory
-RUN mkdir /usr/src/app
-WORKDIR /usr/src
+COPY build /usr/share/nginx/html
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
-# add `/usr/src/node_modules/.bin` to $PATH
-ENV PATH /usr/src/node_modules/.bin:$PATH
-
-# install and cache app dependencies
-ADD package.json /usr/src/package.json
-RUN npm install
-RUN npm install react-scripts -g
-
-# start app
-CMD ["npm", "run", "start"]
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

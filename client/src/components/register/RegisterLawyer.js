@@ -49,7 +49,7 @@ class RegisterLawyer extends Component {
               <div className="input-field col s6">
                 <input
                   onChange={this.onChange}
-                  id="last_name"
+                  name="last_name"
                   type="text"
                   className="validate"
                   value={this.state.last_name}

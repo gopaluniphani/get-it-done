@@ -13,8 +13,9 @@ services:
     container_name: lawyers-service
     build: ./lawyers/
     volumes:
-      - "./lawyers:/usr/src/"
-      - "./lawyers/package.json:/usr/src/package.json"
+      - "./lawyers:/app/"
+      - "./lawyers/package.json:/app/package.json"
+      - "/app/node_modules"
     ports:
       - "3001:3000"
     environment:
@@ -37,8 +38,9 @@ services:
     container_name: doctors-service
     build: ./doctors
     volumes:
-      - "./doctors:/usr/src/"
-      - "./doctors/package.json:/usr/src/package.json"
+      - "./doctors:/app/"
+      - "./doctors/package.json:/app/package.json"
+      - "/app/node_modules"
     ports:
       - "3002:3000"
     environment:
@@ -52,14 +54,8 @@ services:
   web-service:
     container_name: web-service
     build: ./client
-    volumes:
-      - "./client:/usr/src"
-      - "./client/package.json:/usr/src/package.json"
     ports:
-      - "3003:3000"
-    environment:
-      - NODE_ENV=${NODE_ENV}
+      - "8080:80"
     depends_on:
       - lawyers-service
       - doctors-service
-    stdin_open: true
